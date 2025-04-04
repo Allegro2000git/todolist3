@@ -1,11 +1,9 @@
 
-import type {Task, TasksState} from '../App'
 import {
   createTodolistAC,
   deleteTodolistAC,
-} from './todolists-reducer'
+} from './todolists-reducer.ts'
 import {createAction, createReducer, nanoid} from "@reduxjs/toolkit";
-
 
 export const deleteTaskAC = createAction<{todolistId: string, taskId: string}>('tasks/deleteTask')
 export const createTaskAC = createAction<{ todolistId: string, title: string }>('tasks/createTask')
@@ -49,3 +47,12 @@ export const tasksReducer = createReducer(initialState, builder=> {
         })
 
 })
+
+
+export type Task = {
+    id: string
+    title: string
+    isDone: boolean
+}
+
+export type TasksState = Record<string, Task[]>
